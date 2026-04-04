@@ -55,7 +55,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
-          <ThemeSwitcher />
+          {process.env.NODE_ENV === 'development' && <ThemeSwitcher />}
         </ThemeProvider>
       </body>
     </html>
