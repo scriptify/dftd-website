@@ -133,7 +133,7 @@ export default function InfoPage() {
             <div className="glass-card rounded-2xl overflow-hidden">
               <div className="aspect-video w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2988.0!2d19.2134!3d41.9267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDU1JzM2LjEiTiAxOcKwMTInNDguMiJF!5e0!3m2!1sen!2s!4v1"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d19.2856!3d41.8989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135498e1c5765c9d%3A0x6c0e47e87e2a4e8a!2sSafari%20Beach!5e0!3m2!1sen!2s!4v1"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -154,8 +154,7 @@ export default function InfoPage() {
                   href={FESTIVAL.location.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105"
-                  style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+                  className="cta-sticker"
                 >
                   Open in Google Maps
                 </a>

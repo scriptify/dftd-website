@@ -121,13 +121,9 @@ export default function Home() {
             <div className="text-center mt-12">
               <Link
                 href="/lineup"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-                style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+                className="cta-sticker"
               >
                 Full Lineup & Timetable
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
               </Link>
             </div>
           </ScrollSection>
@@ -309,13 +305,9 @@ export default function Home() {
             <div className="text-center mt-12">
               <Link
                 href="/cause"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-                style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+                className="cta-sticker"
               >
                 Learn About Our Cause
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
               </Link>
             </div>
           </ScrollSection>
@@ -355,18 +347,13 @@ export default function Home() {
                     href={FESTIVAL.location.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all hover:scale-105"
-                    style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+                    className="cta-sticker"
                   >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
                     View on Maps
                   </a>
                   <Link
                     href="/info"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all hover:scale-105 glass-card"
+                    className="cta-sticker-outline"
                   >
                     Travel Info
                   </Link>
@@ -460,8 +447,7 @@ export default function Home() {
             </p>
             <Link
               href="/tickets"
-              className="inline-block px-10 py-5 rounded-full text-xl font-black transition-all hover:scale-105 animate-pulse-glow"
-              style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+              className="cta-sticker"
             >
               Get Your Tickets Now
             </Link>

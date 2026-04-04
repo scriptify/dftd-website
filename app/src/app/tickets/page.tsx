@@ -76,14 +76,13 @@ export default function TicketsPage() {
                     href={FESTIVAL.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-                    style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+                    className="cta-sticker"
                   >
                     Get Notified
                   </a>
                   <a
                     href={`mailto:${FESTIVAL.social.email}`}
-                    className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 glass-card"
+                    className="cta-sticker-outline"
                   >
                     Contact Us
                   </a>

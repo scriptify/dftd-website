@@ -179,8 +179,7 @@ export default function CausePage() {
               href={FESTIVAL.partners.euProject.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-              style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+              className="cta-sticker"
             >
               Learn More
             </a>
@@ -235,14 +234,13 @@ export default function CausePage() {
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/tickets"
-              className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-              style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+              className="cta-sticker"
             >
               Get Tickets
             </Link>
             <Link
               href="/contact"
-              className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 glass-card"
+              className="cta-sticker-outline"
             >
               Volunteer
             </Link>

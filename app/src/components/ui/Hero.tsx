@@ -13,6 +13,18 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "var(--gradient-hero)" }}
     >
+      {/* Hero background image */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/images/event/hero_1.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.2,
+          zIndex: 0,
+        }}
+      />
+
       {/* 3D Background */}
       <DogScene />
 
@@ -27,22 +39,21 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-[2] text-center px-4 max-w-5xl mx-auto">
-        {/* Ticker */}
+        {/* Date badge */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, rotate: -5 }}
+          animate={{ opacity: 1, rotate: 2 }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-xs sm:text-sm font-medium"
+          className="inline-block mt-8 mb-8 px-5 py-2 text-xs sm:text-sm font-black uppercase tracking-wider"
           style={{
-            background: "var(--gradient-card)",
-            border: "1px solid var(--border-color)",
+            background: "var(--bg-primary)",
+            border: "2px solid var(--accent-primary)",
             color: "var(--accent-primary)",
+            fontFamily: "var(--font-sans)",
+            borderRadius: "2px",
+            boxShadow: "3px 3px 0px var(--accent-primary)",
           }}
         >
-          <span
-            className="w-2 h-2 rounded-full animate-pulse"
-            style={{ background: "var(--accent-primary)" }}
-          />
           June 13, 2026 &middot; Safari Beach, Ulcinj, Montenegro
         </motion.div>
 
@@ -93,21 +104,10 @@ export default function Hero() {
           transition={{ delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a
-            href="/tickets"
-            className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 animate-pulse-glow"
-            style={{
-              background: "var(--gradient-accent)",
-              color: "var(--bg-primary)",
-            }}
-          >
+          <a href="/tickets" className="cta-sticker">
             Get Tickets
           </a>
-          <a
-            href="/lineup"
-            className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 glass-card"
-            style={{ color: "var(--text-primary)" }}
-          >
+          <a href="/lineup" className="cta-sticker-outline">
             View Lineup
           </a>
         </motion.div>

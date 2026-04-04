@@ -191,8 +191,7 @@ export default function AboutPage() {
           </h2>
           <Link
             href="/tickets"
-            className="inline-block px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-            style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+            className="cta-sticker"
           >
             Get Your Tickets
           </Link>

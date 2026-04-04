@@ -2,10 +2,11 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
-export type ThemeName = 'neon' | 'sunset' | 'tropical' | 'purple' | 'ocean';
+export type ThemeName = 'neon' | 'bonfire' | 'sunset' | 'tropical' | 'purple' | 'ocean';
 
 export const THEMES: { id: ThemeName; name: string; emoji: string; description: string }[] = [
   { id: 'neon', name: 'Neon Beach', emoji: '🌊', description: 'Dark & electric' },
+  { id: 'bonfire', name: 'Beach Bonfire', emoji: '🔥', description: 'Earthy & warm' },
   { id: 'sunset', name: 'Sunset Vibes', emoji: '🌅', description: 'Warm & fiery' },
   { id: 'tropical', name: 'Tropical Pop', emoji: '🌴', description: 'Lush & vibrant' },
   { id: 'purple', name: 'Electric Purple', emoji: '💜', description: 'Bold & mystic' },

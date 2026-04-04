@@ -41,8 +41,7 @@ export default function LineupPage() {
               href={FESTIVAL.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full text-sm font-bold transition-all hover:scale-105"
-              style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+              className="cta-sticker"
             >
               Follow on Instagram
             </a>
@@ -50,7 +49,7 @@ export default function LineupPage() {
               href={FESTIVAL.social.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full text-sm font-bold transition-all hover:scale-105 glass-card"
+              className="cta-sticker-outline"
             >
               Follow on Facebook
             </a>
@@ -158,8 +157,7 @@ export default function LineupPage() {
               href={FESTIVAL.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
-              style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+              className="cta-sticker"
             >
               Follow @dftd_26
             </a>

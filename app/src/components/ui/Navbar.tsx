@@ -80,8 +80,7 @@ export default function Navbar() {
           {/* Ticket CTA */}
           <Link
             href="/tickets"
-            className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105"
-            style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+            className="hidden md:inline-block cta-sticker !py-2 !px-4 !text-sm !rotate-0 hover:!-rotate-2"
           >
             Get Tickets
           </Link>
@@ -148,8 +147,7 @@ export default function Navbar() {
             >
               <Link
                 href="/tickets"
-                className="block text-center text-lg font-bold py-4 rounded-2xl"
-                style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+                className="cta-sticker block text-center !text-lg"
               >
                 Get Tickets
               </Link>

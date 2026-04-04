@@ -1,10 +1,14 @@
 "use client";
 
-import { useRef, useMemo, Suspense } from "react";
+import { useRef, useMemo, useEffect, Suspense, createContext, useContext } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+
+// Shared scroll progress ref accessible inside the Canvas
+const scrollRef = { current: 0 };
+const ScrollContext = createContext(scrollRef);
 
 // Pre-generate star positions outside of React to avoid Math.random in render
 const STAR_POSITIONS = (() => {
@@ -23,6 +27,7 @@ function DogModel({
   rotationY = 0,
   floatSpeed = 1,
   color,
+  parallaxSpeed = 1,
 }: {
   url: string;
   position: [number, number, number];
@@ -30,6 +35,7 @@ function DogModel({
   rotationY?: number;
   floatSpeed?: number;
   color: string;
+  parallaxSpeed?: number;
 }) {
   const obj = useLoader(OBJLoader, url);
   const groupRef = useRef<THREE.Group>(null);
@@ -62,9 +68,18 @@ function DogModel({
 
   const normalizedScale = scale / center.maxDim;
 
+  const scroll = useContext(ScrollContext);
+  const basePosition = useRef(position);
+
   useFrame((_, delta) => {
     elapsedRef.current += delta;
     if (groupRef.current) {
+      const s = scroll.current;
+      // Parallax: each dog moves up at different speeds as user scrolls down
+      groupRef.current.position.y = basePosition.current[1] + s * parallaxSpeed * 3;
+      // Gentle tilt on scroll
+      groupRef.current.rotation.x = s * parallaxSpeed * 0.3;
+      // Idle rotation
       groupRef.current.rotation.y =
         rotationY + Math.sin(elapsedRef.current * 0.3) * 0.15;
     }
@@ -118,6 +133,7 @@ function Scene() {
           rotationY={Math.PI * 0.75}
           floatSpeed={1.2}
           color="#06d6a0"
+          parallaxSpeed={1.2}
         />
         <DogModel
           url="/models/dog_2/13180_ConcreteDogStatue_v1_NEW.obj"
@@ -126,6 +142,7 @@ function Scene() {
           rotationY={Math.PI * 0.65}
           floatSpeed={0.8}
           color="#3a86ff"
+          parallaxSpeed={0.7}
         />
 
         {/* Right side - 1 dog */}
@@ -136,6 +153,7 @@ function Scene() {
           rotationY={-Math.PI * 0.75}
           floatSpeed={1}
           color="#06d6a0"
+          parallaxSpeed={1.0}
         />
       </Suspense>
 
@@ -145,6 +163,15 @@ function Scene() {
 }
 
 export default function DogScene() {
+  useEffect(() => {
+    const onScroll = () => {
+      // Normalize scroll: 0 at top, 1 at ~one viewport height
+      scrollRef.current = window.scrollY / window.innerHeight;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div
       style={{
@@ -162,7 +189,9 @@ export default function DogScene() {
         gl={{ alpha: true, antialias: true, powerPreference: "default" }}
         dpr={[1, 2]}
       >
-        <Scene />
+        <ScrollContext.Provider value={scrollRef}>
+          <Scene />
+        </ScrollContext.Provider>
       </Canvas>
     </div>
   );

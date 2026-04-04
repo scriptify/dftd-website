@@ -19,6 +19,23 @@
   --section-divider: rgba(6, 214, 160, 0.2);
 }
 
+[data-theme="bonfire"] {
+  --bg-primary: #121a16;
+  --bg-secondary: #1a2620;
+  --bg-card: #22332a;
+  --text-primary: #f0ebe3;
+  --text-secondary: #a8b5a0;
+  --accent-primary: #5db88c;
+  --accent-secondary: #e8a45a;
+  --accent-tertiary: #6aacb8;
+  --gradient-hero: linear-gradient(135deg, #121a16 0%, #1a2a20 30%, #162024 70%, #121a16 100%);
+  --gradient-accent: linear-gradient(135deg, #5db88c, #6aacb8);
+  --gradient-card: linear-gradient(135deg, rgba(93, 184, 140, 0.08), rgba(106, 172, 184, 0.08));
+  --nav-bg: rgba(18, 26, 22, 0.9);
+  --border-color: rgba(93, 184, 140, 0.1);
+  --section-divider: rgba(93, 184, 140, 0.15);
+}
+
 [data-theme="sunset"] {
   --bg-primary: #1a0a0a;
   --bg-secondary: #2d1515;
@@ -185,6 +202,63 @@ body {
   backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
+}
+
+/* ===== STICKER CTA ===== */
+.cta-sticker {
+  display: inline-block;
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 3px solid var(--text-primary);
+  border-radius: 4px;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  transform: rotate(-2deg);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px var(--text-primary);
+  text-decoration: none;
+}
+.cta-sticker:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 2px 2px 0px var(--text-primary);
+}
+.cta-sticker:active {
+  transform: rotate(0deg) scale(0.98);
+  box-shadow: 1px 1px 0px var(--text-primary);
+}
+
+.cta-sticker-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 3px solid var(--accent-primary);
+  border-radius: 4px;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  transform: rotate(1deg);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px var(--accent-primary);
+  text-decoration: none;
+}
+.cta-sticker-outline:hover {
+  transform: rotate(0deg) scale(1.05);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  box-shadow: 2px 2px 0px var(--text-primary);
+}
+.cta-sticker-outline:active {
+  transform: rotate(0deg) scale(0.98);
+  box-shadow: 1px 1px 0px var(--text-primary);
 }
 
 /* ===== SECTION WAVE DIVIDER ===== */
