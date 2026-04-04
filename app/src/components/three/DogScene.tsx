@@ -1,10 +1,20 @@
-'use client';
+"use client";
 
-import { useRef, useMemo, Suspense } from 'react';
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
-import * as THREE from 'three';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { useRef, useMemo, Suspense } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { Float } from "@react-three/drei";
+import * as THREE from "three";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+
+// Pre-generate star positions outside of React to avoid Math.random in render
+const STAR_POSITIONS = (() => {
+  const count = 150;
+  const arr = new Float32Array(count * 3);
+  for (let i = 0; i < count * 3; i++) {
+    arr[i] = (Math.random() - 0.5) * 40;
+  }
+  return arr;
+})();
 
 function DogModel({
   url,
@@ -23,6 +33,7 @@ function DogModel({
 }) {
   const obj = useLoader(OBJLoader, url);
   const groupRef = useRef<THREE.Group>(null);
+  const elapsedRef = useRef(0);
 
   const clonedObj = useMemo(() => {
     const clone = obj.clone();
@@ -40,7 +51,6 @@ function DogModel({
     return clone;
   }, [obj, color]);
 
-  // Compute bounding box to center the model
   const center = useMemo(() => {
     const box = new THREE.Box3().setFromObject(clonedObj);
     const c = new THREE.Vector3();
@@ -52,39 +62,33 @@ function DogModel({
 
   const normalizedScale = scale / center.maxDim;
 
-  useFrame(({ clock }) => {
+  useFrame((_, delta) => {
+    elapsedRef.current += delta;
     if (groupRef.current) {
-      // Slow gentle rotation
-      groupRef.current.rotation.y = rotationY + Math.sin(clock.elapsedTime * 0.3) * 0.15;
+      groupRef.current.rotation.y =
+        rotationY + Math.sin(elapsedRef.current * 0.3) * 0.15;
     }
   });
 
   return (
     <Float speed={floatSpeed} rotationIntensity={0.1} floatIntensity={0.3}>
       <group ref={groupRef} position={position} scale={normalizedScale}>
-        <primitive
-          object={clonedObj}
-          position={[-center.center.x, -center.center.y, -center.center.z]}
-        />
+        <group rotation={[-Math.PI / 2, 0, -(Math.PI / 4)]}>
+          <primitive
+            object={clonedObj}
+            position={[-center.center.x, -center.center.y, -center.center.z]}
+          />
+        </group>
       </group>
     </Float>
   );
 }
 
 function StarField() {
-  const positions = useMemo(() => {
-    const count = 150;
-    const arr = new Float32Array(count * 3);
-    for (let i = 0; i < count * 3; i++) {
-      arr[i] = (Math.random() - 0.5) * 40;
-    }
-    return arr;
-  }, []);
-
   return (
     <points>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-position" args={[STAR_POSITIONS, 3]} />
       </bufferGeometry>
       <pointsMaterial
         size={0.06}
@@ -105,22 +109,21 @@ function Scene() {
       <directionalLight position={[5, 5, 5]} intensity={1} color="#06d6a0" />
       <directionalLight position={[-5, 3, -3]} intensity={0.5} color="#3a86ff" />
       <pointLight position={[0, -2, 3]} intensity={0.4} color="#ff006e" />
-
       <Suspense fallback={null}>
         {/* Left side - 2 dogs */}
         <DogModel
           url="/models/dog_1/10680_Dog_v2.obj"
-          position={[-4.5, -1.5, -1]}
+          position={[-5, -1.5, 0]}
           scale={3}
-          rotationY={0.5}
+          rotationY={Math.PI * 0.75}
           floatSpeed={1.2}
           color="#06d6a0"
         />
         <DogModel
           url="/models/dog_2/13180_ConcreteDogStatue_v1_NEW.obj"
-          position={[-2.5, -0.5, 0.5]}
+          position={[-3, 0, 1]}
           scale={2.2}
-          rotationY={0.3}
+          rotationY={Math.PI * 0.65}
           floatSpeed={0.8}
           color="#3a86ff"
         />
@@ -128,11 +131,11 @@ function Scene() {
         {/* Right side - 1 dog */}
         <DogModel
           url="/models/dog_3/13180_ConcreteDogStatue_v1_NEW.obj"
-          position={[4, -1, -0.5]}
+          position={[4.5, -1, 0]}
           scale={2.8}
-          rotationY={-0.5}
+          rotationY={-Math.PI * 0.75}
           floatSpeed={1}
-          color="#ff006e"
+          color="#06d6a0"
         />
       </Suspense>
 
@@ -143,11 +146,20 @@ function Scene() {
 
 export default function DogScene() {
   return (
-    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 0,
+      }}
+    >
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        style={{ background: 'transparent', width: '100%', height: '100%' }}
-        gl={{ alpha: true, antialias: true, powerPreference: 'default' }}
+        style={{ background: "transparent", width: "100%", height: "100%" }}
+        gl={{ alpha: true, antialias: true, powerPreference: "default" }}
         dpr={[1, 2]}
       >
         <Scene />

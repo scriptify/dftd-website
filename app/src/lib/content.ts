@@ -99,6 +99,91 @@ export const NAV_LINKS = [
   { href: '/contact', label: 'Contact' },
 ];
 
+// Featured DJs for the lineup preview cards
+export const FEATURED_DJS: {
+  name: string;
+  stage: string;
+  genre: string;
+  time: string;
+  gradient: string;
+  instagram?: string;
+  soundcloud?: string;
+  announced: boolean;
+}[] = [
+  {
+    name: 'TBA',
+    stage: 'Main Stage',
+    genre: 'Techno',
+    time: '22:00 – 00:00',
+    gradient: 'linear-gradient(135deg, #06d6a0, #0a8f6a)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Main Stage',
+    genre: 'Techno',
+    time: '00:00 – 02:00',
+    gradient: 'linear-gradient(135deg, #3a86ff, #1a56cc)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Main Stage',
+    genre: 'Techno',
+    time: '02:00 – 04:00',
+    gradient: 'linear-gradient(135deg, #ff006e, #cc0058)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Second Stage',
+    genre: 'Disco / House',
+    time: '16:00 – 18:00',
+    gradient: 'linear-gradient(135deg, #ffd700, #cc9900)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Second Stage',
+    genre: 'Tech-House',
+    time: '20:00 – 22:00',
+    gradient: 'linear-gradient(135deg, #a855f7, #7c3aed)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Second Stage',
+    genre: 'Melodic House',
+    time: '00:00 – 02:00',
+    gradient: 'linear-gradient(135deg, #00bcd4, #0097a7)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Main Stage',
+    genre: 'Techno',
+    time: '20:00 – 22:00',
+    gradient: 'linear-gradient(135deg, #ef4444, #b91c1c)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Second Stage',
+    genre: 'House',
+    time: '22:00 – 00:00',
+    gradient: 'linear-gradient(135deg, #06d6a0, #3a86ff)',
+    announced: false,
+  },
+  {
+    name: 'TBA',
+    stage: 'Second Stage',
+    genre: 'Tech-House',
+    time: '02:00 – 04:00',
+    gradient: 'linear-gradient(135deg, #ff006e, #a855f7)',
+    announced: false,
+  },
+];
+
 export const DOG_IMAGES = [
   { src: '/images/dogs/IMG-20260325-WA0008.jpg', alt: 'Adopted street dog - happy ending' },
   { src: '/images/dogs/IMG-20260325-WA0010.jpg', alt: 'Happy golden retriever' },

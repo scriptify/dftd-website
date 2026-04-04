@@ -69,7 +69,11 @@ export default function Hero() {
           className="text-lg sm:text-xl md:text-2xl mb-10 max-w-2xl mx-auto"
           style={{ color: "var(--text-secondary)" }}
         >
-          {FESTIVAL.tagline}
+          A Techno &amp; House charity festival on the Adriatic coast.
+          <br />
+          <span style={{ color: "var(--accent-primary)", fontWeight: 700 }}>
+            Every beat saves a life.
+          </span>
         </motion.p>
 
         {/* Countdown */}

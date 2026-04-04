@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Hero from '@/components/ui/Hero';
 import Ticker from '@/components/ui/Ticker';
 import ScrollSection from '@/components/ui/ScrollSection';
-import { FESTIVAL, DOG_IMAGES } from '@/lib/content';
+import { FESTIVAL, DOG_IMAGES, FEATURED_DJS } from '@/lib/content';
 
 export default function Home() {
   return (
@@ -24,6 +24,115 @@ export default function Home() {
         'TECHNO \u2022 HOUSE \u2022 DISCO',
         '100% FOR THE DOGS',
       ]} />
+
+      {/* Lineup Preview Section */}
+      <section className="py-24 px-4 overflow-hidden" style={{ background: 'var(--bg-secondary)' }}>
+        <div className="max-w-7xl mx-auto">
+          <ScrollSection>
+            <div className="text-center mb-16">
+              <h2 className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
+                The Lineup
+              </h2>
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+                WHO&apos;S <span className="gradient-text">PLAYING</span>
+              </h3>
+              <p className="text-lg max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+                13 artists across 2 stages. Artists will be announced soon &mdash; follow us to stay updated!
+              </p>
+            </div>
+          </ScrollSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {FEATURED_DJS.map((dj, i) => {
+              const rotation = i % 3 === 0 ? -2 : i % 3 === 1 ? 1 : -1;
+              return (
+                <ScrollSection
+                  key={`dj-${i}`}
+                  delay={i * 0.08}
+                  direction={i % 2 === 0 ? 'left' : 'right'}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotate: 0, y: -8 }}
+                    style={{ rotate: rotation }}
+                    className="glass-card rounded-2xl p-5 flex items-center gap-4 group cursor-pointer transition-shadow hover:shadow-2xl"
+                  >
+                    {/* Avatar */}
+                    <div
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl shrink-0 flex items-center justify-center text-2xl font-black"
+                      style={{
+                        background: dj.gradient,
+                        color: 'rgba(0,0,0,0.3)',
+                        fontFamily: 'var(--font-heading)',
+                      }}
+                    >
+                      {dj.announced ? dj.name.charAt(0) : '?'}
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <h4
+                        className={`text-xl font-black truncate ${!dj.announced ? 'opacity-50' : ''}`}
+                        style={{ fontFamily: 'var(--font-heading)' }}
+                      >
+                        {dj.name}
+                      </h4>
+                      <p className="text-sm font-bold gradient-text">{dj.genre}</p>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+                          {dj.stage}
+                        </span>
+                        <span className="w-1 h-1 rounded-full" style={{ background: 'var(--text-secondary)' }} />
+                        <span className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
+                          {dj.time}
+                        </span>
+                      </div>
+                      {dj.announced && (dj.instagram || dj.soundcloud) && (
+                        <div className="flex gap-2 mt-2">
+                          {dj.instagram && (
+                            <a href={dj.instagram} target="_blank" rel="noopener noreferrer" className="text-xs hover:underline" style={{ color: 'var(--accent-primary)' }}>
+                              Instagram
+                            </a>
+                          )}
+                          {dj.soundcloud && (
+                            <a href={dj.soundcloud} target="_blank" rel="noopener noreferrer" className="text-xs hover:underline" style={{ color: 'var(--accent-primary)' }}>
+                              SoundCloud
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Status */}
+                    {!dj.announced && (
+                      <span
+                        className="text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shrink-0 animate-pulse"
+                        style={{ background: 'var(--gradient-card)', color: 'var(--accent-primary)' }}
+                      >
+                        Soon
+                      </span>
+                    )}
+                  </motion.div>
+                </ScrollSection>
+              );
+            })}
+          </div>
+
+          <ScrollSection>
+            <div className="text-center mt-12">
+              <Link
+                href="/lineup"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105"
+                style={{ background: 'var(--gradient-accent)', color: 'var(--bg-primary)' }}
+              >
+                Full Lineup & Timetable
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </ScrollSection>
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="py-24 px-4" style={{ background: 'var(--bg-primary)' }}>
