@@ -27,7 +27,6 @@ export default function ThemeSwitcher() {
         className="flex items-center gap-2 px-4 py-3 rounded-full glass-card shadow-2xl cursor-pointer"
         style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}
       >
-        <span className="text-lg">{current.emoji}</span>
         <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
           {current.name}
         </span>
@@ -65,11 +64,7 @@ export default function ThemeSwitcher() {
                     background: theme === t.id ? 'var(--gradient-card)' : 'transparent',
                   }}
                 >
-                  <span className="text-xl">{t.emoji}</span>
-                  <div className="text-left">
-                    <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>{t.name}</p>
-                    <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.description}</p>
-                  </div>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>{t.name}</p>
                   {theme === t.id && (
                     <svg className="w-4 h-4 ml-auto" fill="var(--accent-primary)" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />

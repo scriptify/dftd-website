@@ -5,10 +5,20 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { useTheme } from "@/context/ThemeContext";
 
 // Shared scroll progress ref accessible inside the Canvas
 const scrollRef = { current: 0 };
 const ScrollContext = createContext(scrollRef);
+
+// Shared theme colors ref accessible inside the Canvas
+const themeColorsRef = {
+  current: {
+    primary: "#06d6a0",
+    secondary: "#ff006e",
+    tertiary: "#3a86ff",
+  },
+};
 
 // Pre-generate star positions outside of React to avoid Math.random in render
 const STAR_POSITIONS = (() => {
@@ -26,7 +36,7 @@ function DogModel({
   scale,
   rotationY = 0,
   floatSpeed = 1,
-  color,
+  colorKey,
   parallaxSpeed = 1,
 }: {
   url: string;
@@ -34,28 +44,34 @@ function DogModel({
   scale: number;
   rotationY?: number;
   floatSpeed?: number;
-  color: string;
+  colorKey: "primary" | "secondary" | "tertiary";
   parallaxSpeed?: number;
 }) {
   const obj = useLoader(OBJLoader, url);
   const groupRef = useRef<THREE.Group>(null);
   const elapsedRef = useRef(0);
+  const materialsRef = useRef<THREE.MeshStandardMaterial[]>([]);
+  const targetColor = useRef(new THREE.Color());
 
   const clonedObj = useMemo(() => {
     const clone = obj.clone();
+    const mats: THREE.MeshStandardMaterial[] = [];
     clone.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        child.material = new THREE.MeshStandardMaterial({
-          color: new THREE.Color(color),
+        const mat = new THREE.MeshStandardMaterial({
+          color: new THREE.Color(themeColorsRef.current[colorKey]),
           metalness: 0.3,
           roughness: 0.6,
-          emissive: new THREE.Color(color),
+          emissive: new THREE.Color(themeColorsRef.current[colorKey]),
           emissiveIntensity: 0.15,
         });
+        child.material = mat;
+        mats.push(mat);
       }
     });
+    materialsRef.current = mats;
     return clone;
-  }, [obj, color]);
+  }, [obj, colorKey]);
 
   const center = useMemo(() => {
     const box = new THREE.Box3().setFromObject(clonedObj);
@@ -73,6 +89,14 @@ function DogModel({
 
   useFrame((_, delta) => {
     elapsedRef.current += delta;
+
+    // Smoothly lerp material colors toward current theme
+    targetColor.current.set(themeColorsRef.current[colorKey]);
+    for (const mat of materialsRef.current) {
+      mat.color.lerp(targetColor.current, 0.08);
+      mat.emissive.lerp(targetColor.current, 0.08);
+    }
+
     if (groupRef.current) {
       const s = scroll.current;
       // Parallax: each dog moves up at different speeds as user scrolls down
@@ -117,13 +141,38 @@ function StarField() {
   );
 }
 
-function Scene() {
+function ThemeLights() {
+  const light1Ref = useRef<THREE.DirectionalLight>(null);
+  const light2Ref = useRef<THREE.DirectionalLight>(null);
+  const light3Ref = useRef<THREE.PointLight>(null);
+  const target1 = useRef(new THREE.Color());
+  const target2 = useRef(new THREE.Color());
+  const target3 = useRef(new THREE.Color());
+
+  useFrame(() => {
+    const c = themeColorsRef.current;
+    target1.current.set(c.primary);
+    target2.current.set(c.tertiary);
+    target3.current.set(c.secondary);
+    if (light1Ref.current) light1Ref.current.color.lerp(target1.current, 0.08);
+    if (light2Ref.current) light2Ref.current.color.lerp(target2.current, 0.08);
+    if (light3Ref.current) light3Ref.current.color.lerp(target3.current, 0.08);
+  });
+
   return (
     <>
       <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 5, 5]} intensity={1} color="#06d6a0" />
-      <directionalLight position={[-5, 3, -3]} intensity={0.5} color="#3a86ff" />
-      <pointLight position={[0, -2, 3]} intensity={0.4} color="#ff006e" />
+      <directionalLight ref={light1Ref} position={[5, 5, 5]} intensity={1} />
+      <directionalLight ref={light2Ref} position={[-5, 3, -3]} intensity={0.5} />
+      <pointLight ref={light3Ref} position={[0, -2, 3]} intensity={0.4} />
+    </>
+  );
+}
+
+function Scene() {
+  return (
+    <>
+      <ThemeLights />
       <Suspense fallback={null}>
         {/* Left side - 2 dogs */}
         <DogModel
@@ -132,7 +181,7 @@ function Scene() {
           scale={3}
           rotationY={Math.PI * 0.75}
           floatSpeed={1.2}
-          color="#06d6a0"
+          colorKey="primary"
           parallaxSpeed={1.2}
         />
         <DogModel
@@ -141,7 +190,7 @@ function Scene() {
           scale={2.2}
           rotationY={Math.PI * 0.65}
           floatSpeed={0.8}
-          color="#3a86ff"
+          colorKey="tertiary"
           parallaxSpeed={0.7}
         />
 
@@ -152,7 +201,7 @@ function Scene() {
           scale={2.8}
           rotationY={-Math.PI * 0.75}
           floatSpeed={1}
-          color="#06d6a0"
+          colorKey="primary"
           parallaxSpeed={1.0}
         />
       </Suspense>
@@ -163,6 +212,8 @@ function Scene() {
 }
 
 export default function DogScene() {
+  const { theme } = useTheme();
+
   useEffect(() => {
     const onScroll = () => {
       // Normalize scroll: 0 at top, 1 at ~one viewport height
@@ -171,6 +222,16 @@ export default function DogScene() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Read CSS custom properties and update the shared ref whenever theme changes
+  useEffect(() => {
+    const styles = getComputedStyle(document.documentElement);
+    themeColorsRef.current = {
+      primary: styles.getPropertyValue("--accent-primary").trim() || "#06d6a0",
+      secondary: styles.getPropertyValue("--accent-secondary").trim() || "#ff006e",
+      tertiary: styles.getPropertyValue("--accent-tertiary").trim() || "#3a86ff",
+    };
+  }, [theme]);
 
   return (
     <div

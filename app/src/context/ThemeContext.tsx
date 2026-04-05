@@ -2,15 +2,12 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
-export type ThemeName = 'neon' | 'bonfire' | 'sunset' | 'tropical' | 'purple' | 'ocean';
+export type ThemeName = 'neon' | 'poster' | 'beach-day';
 
-export const THEMES: { id: ThemeName; name: string; emoji: string; description: string }[] = [
-  { id: 'neon', name: 'Neon Beach', emoji: '🌊', description: 'Dark & electric' },
-  { id: 'bonfire', name: 'Beach Bonfire', emoji: '🔥', description: 'Earthy & warm' },
-  { id: 'sunset', name: 'Sunset Vibes', emoji: '🌅', description: 'Warm & fiery' },
-  { id: 'tropical', name: 'Tropical Pop', emoji: '🌴', description: 'Lush & vibrant' },
-  { id: 'purple', name: 'Electric Purple', emoji: '💜', description: 'Bold & mystic' },
-  { id: 'ocean', name: 'Ocean Breeze', emoji: '☀️', description: 'Light & breezy' },
+export const THEMES: { id: ThemeName; name: string }[] = [
+  { id: 'poster', name: 'Original Colors' },
+  { id: 'neon', name: 'Green Dark' },
+  { id: 'beach-day', name: 'Light Theme' },
 ];
 
 interface ThemeContextType {
@@ -18,10 +15,10 @@ interface ThemeContextType {
   setTheme: (theme: ThemeName) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ theme: 'neon', setTheme: () => {} });
+const ThemeContext = createContext<ThemeContextType>({ theme: 'poster', setTheme: () => {} });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<ThemeName>('neon');
+  const [theme, setTheme] = useState<ThemeName>('poster');
 
   useEffect(() => {
     const saved = localStorage.getItem('dftd-theme') as ThemeName | null;
@@ -31,7 +28,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const attr = theme === 'neon' ? '' : theme;
+    const attr = theme === 'poster' ? '' : theme;
     if (attr) {
       document.documentElement.setAttribute('data-theme', attr);
     } else {
