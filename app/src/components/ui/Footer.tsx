@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FESTIVAL, NAV_LINKS } from '@/lib/content';
 
@@ -22,9 +23,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <h3 className="text-2xl font-black mb-3" style={{ fontFamily: 'var(--font-display)' }}>
-              {FESTIVAL.shortName}
-            </h3>
+            <Link href="/">
+              <Image
+                src="/images/dftd_logo.png"
+                alt={FESTIVAL.shortName}
+                width={120}
+                height={80}
+                className="mb-3"
+                style={{ height: '60px', width: 'auto' }}
+              />
+            </Link>
             <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
               {FESTIVAL.tagline}
             </p>

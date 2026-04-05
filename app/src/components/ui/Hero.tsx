@@ -10,7 +10,7 @@ const DogScene = dynamic(() => import("../three/DogScene"), { ssr: false });
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       style={{ background: "var(--gradient-hero)" }}
     >
       {/* Hero background image */}

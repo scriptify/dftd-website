@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS, FESTIVAL } from '@/lib/content';
@@ -39,12 +40,15 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span
-              className="text-xl sm:text-2xl font-black tracking-tight"
-              style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
-            >
-              {FESTIVAL.shortName}
-            </span>
+            <Image
+              src="/images/dftd_logo.png"
+              alt={FESTIVAL.shortName}
+              width={120}
+              height={80}
+              className="transition-all duration-300"
+              style={{ height: scrolled ? '36px' : '48px', width: 'auto' }}
+              priority
+            />
             <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ background: 'var(--accent-primary)', color: 'var(--bg-primary)' }}>
               &apos;{String(FESTIVAL.year).slice(2)}
             </span>
