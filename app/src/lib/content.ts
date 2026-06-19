@@ -1,10 +1,15 @@
-// Festival data - all content centralized here
-export const FESTIVAL = {
+// Event data - all content centralized here
+export const EVENT = {
   name: 'Dancing For The Dogs',
   shortName: 'DFTD',
-  tagline: 'Dance for a cause. Every beat saves a life.',
-  date: new Date('2026-06-13T16:00:00+02:00'),
-  endDate: new Date('2026-06-14T06:00:00+02:00'),
+  // Part of the "Himbeereis zum Frühstück" party series
+  series: 'Himbeereis zum Frühstück',
+  edition: 'Teil 4',
+  type: 'Halloween Disco Party',
+  tagline: 'One night of disco. Every euro for the dogs.',
+  // Saturday, October 31, 2026 — Montenegro is on CET (UTC+1) at the end of October
+  date: new Date('2026-10-31T20:00:00+01:00'),
+  dateLabel: 'Saturday, October 31, 2026',
   year: 2026,
   location: {
     venue: 'Safari Beach',
@@ -14,174 +19,51 @@ export const FESTIVAL = {
     mapUrl: 'https://maps.app.goo.gl/f2C1rZFdEjEw2veH9?g_st=ac',
     coordinates: { lat: 41.9267, lng: 19.2134 },
   },
-  times: {
-    doors: '16:00',
-    mainStageEnd: '04:00',
-    secondStageEnd: '06:00',
-    duration: '14 hours',
+  // What the night is about — kept deliberately simple. It's just a party now.
+  highlights: [
+    {
+      emoji: '🪩',
+      title: 'Disco Party',
+      desc: 'One DJ, one dancefloor, one good reason. Dance the night away right on the beach.',
+    },
+    {
+      emoji: '🎃',
+      title: 'Halloween Costume Contest',
+      desc: 'It’s October 31st — come in costume! The best looks win prizes on the night.',
+    },
+    {
+      emoji: '🎟️',
+      title: 'Charity Raffle',
+      desc: 'Grab a raffle ticket for the chance to win great prizes. 100% of the proceeds go to the dogs.',
+    },
+  ],
+  cause: {
+    title: 'SOS Street Dog Project',
+    short: '100% of all raffle proceeds go to the SOS Street Dog Project.',
+    description:
+      'The SOS Street Dog Project was founded in the USA in 2017 by Barbara and Andy Katz after they witnessed the suffering of street dogs while travelling through Albania and Montenegro. The Montenegro chapter was established in 2021. Today, around 300 dogs a year are spayed/neutered, vaccinated, and given the medical care they need — and many go on to find loving homes across the EU.',
+    raisedLastTime: '5,500',
+    currency: 'EUR',
+    stats: [
+      { value: '~300', label: 'Dogs helped / year' },
+      { value: '2017', label: 'Founded (USA)' },
+      { value: '2021', label: 'Montenegro chapter' },
+    ],
   },
-  stages: [
-    {
-      name: 'Main Stage',
-      genre: 'Techno',
-      location: 'Beach',
-      hours: '16:00 – 04:00',
-      djCount: 6,
-      setLength: '2 hours',
-    },
-    {
-      name: 'Second Stage',
-      genre: 'Disco → House / Tech-House / Melodic',
-      location: 'Club Area',
-      hours: '16:00 – 06:00',
-      djCount: 7,
-      setLength: '2 hours',
-    },
-  ],
-  lineup: [
-    // Placeholder DJs - to be announced gradually
-    { name: 'TBA', stage: 'Main Stage', time: '16:00 – 18:00', announced: false },
-    { name: 'TBA', stage: 'Main Stage', time: '18:00 – 20:00', announced: false },
-    { name: 'TBA', stage: 'Main Stage', time: '20:00 – 22:00', announced: false },
-    { name: 'TBA', stage: 'Main Stage', time: '22:00 – 00:00', announced: false },
-    { name: 'TBA', stage: 'Main Stage', time: '00:00 – 02:00', announced: false },
-    { name: 'TBA', stage: 'Main Stage', time: '02:00 – 04:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '16:00 – 18:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '18:00 – 20:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '20:00 – 22:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '22:00 – 00:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '00:00 – 02:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '02:00 – 04:00', announced: false },
-    { name: 'TBA', stage: 'Second Stage', time: '04:00 – 06:00', announced: false },
-  ],
   social: {
     instagram: 'https://www.instagram.com/dftd_26/',
     facebook: 'https://www.facebook.com/profile.php?id=61580712515392',
     email: 'info@dancingforthedogs.me',
     website: 'https://dancingforthedogs.me',
   },
-  cause: {
-    title: 'SOS Street Dog Project',
-    description: 'Founded in the USA in 2017 by Barbara and Andrew Katz. The Montenegro chapter was established in 2021, spaying/neutering, vaccinating, and treating approximately 300 dogs per year.',
-    previousRaised: '5,500',
-    currency: 'EUR',
-  },
-  partners: {
-    danceForShelters: {
-      name: 'Dance For Shelters',
-      org: 'THE LOFT BELGIUM VZW',
-      founders: 'Marek & Monika',
-      description: 'A Belgium-based non-profit founded by DJs Marek and Monika, organizing charity music events for animal shelters across Europe.',
-      website: 'https://www.danceforshelters.com/',
-      instagram: 'https://www.instagram.com/dance_for_shelters/',
-      facebook: 'https://www.facebook.com/profile.php?id=61564007346790&locale=pl_PL',
-      email: 'danceforshelters@gmail.com',
-    },
-    euProject: {
-      name: 'Čuvaj da te čuva',
-      description: 'EU-funded animal rights campaign that DFTD is officially part of.',
-      website: 'https://www.evropskakuca.me/cuvaj-da-te-cuva/',
-    },
-  },
-  raffle: {
-    description: 'Every ticket includes a chance to win amazing prizes in our charity raffle!',
-    prizes: ['Electric Scooters', 'And more prizes from local sponsors'],
-  },
 };
 
+// Single-page navigation — anchors to sections on the home page
 export const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/lineup', label: 'Lineup' },
-  { href: '/tickets', label: 'Tickets' },
-  { href: '/info', label: 'Info' },
-  { href: '/cause', label: 'The Cause' },
-  { href: '/contact', label: 'Contact' },
-];
-
-// Featured DJs for the lineup preview cards
-export const FEATURED_DJS: {
-  name: string;
-  stage: string;
-  genre: string;
-  time: string;
-  gradient: string;
-  instagram?: string;
-  soundcloud?: string;
-  announced: boolean;
-}[] = [
-  {
-    name: 'TBA',
-    stage: 'Main Stage',
-    genre: 'Techno',
-    time: '22:00 – 00:00',
-    gradient: 'linear-gradient(135deg, #06d6a0, #0a8f6a)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Main Stage',
-    genre: 'Techno',
-    time: '00:00 – 02:00',
-    gradient: 'linear-gradient(135deg, #3a86ff, #1a56cc)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Main Stage',
-    genre: 'Techno',
-    time: '02:00 – 04:00',
-    gradient: 'linear-gradient(135deg, #ff006e, #cc0058)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Second Stage',
-    genre: 'Disco / House',
-    time: '16:00 – 18:00',
-    gradient: 'linear-gradient(135deg, #ffd700, #cc9900)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Second Stage',
-    genre: 'Tech-House',
-    time: '20:00 – 22:00',
-    gradient: 'linear-gradient(135deg, #a855f7, #7c3aed)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Second Stage',
-    genre: 'Melodic House',
-    time: '00:00 – 02:00',
-    gradient: 'linear-gradient(135deg, #00bcd4, #0097a7)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Main Stage',
-    genre: 'Techno',
-    time: '20:00 – 22:00',
-    gradient: 'linear-gradient(135deg, #ef4444, #b91c1c)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Second Stage',
-    genre: 'House',
-    time: '22:00 – 00:00',
-    gradient: 'linear-gradient(135deg, #06d6a0, #3a86ff)',
-    announced: false,
-  },
-  {
-    name: 'TBA',
-    stage: 'Second Stage',
-    genre: 'Tech-House',
-    time: '02:00 – 04:00',
-    gradient: 'linear-gradient(135deg, #ff006e, #a855f7)',
-    announced: false,
-  },
+  { href: '#party', label: 'The Party' },
+  { href: '#cause', label: 'The Cause' },
+  { href: '#location', label: 'Location' },
+  { href: '#follow', label: 'Follow' },
 ];
 
 export const DOG_IMAGES = [
@@ -193,5 +75,4 @@ export const DOG_IMAGES = [
   { src: '/images/dogs/IMG-20260325-WA0015.jpg', alt: 'Street dog in Montenegro' },
   { src: '/images/dogs/IMG-20260325-WA0016.jpg', alt: 'Rescued puppy' },
   { src: '/images/dogs/IMG-20260325-WA0017.jpg', alt: 'Dog rescue success' },
-  { src: '/images/event/beach-venue.jpg', alt: 'Dogs on Velika Plaza beach, Ulcinj' },
 ];

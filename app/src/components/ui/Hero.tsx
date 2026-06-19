@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Countdown from "./Countdown";
-import { FESTIVAL } from "@/lib/content";
+import { EVENT } from "@/lib/content";
 
 const DogScene = dynamic(() => import("../three/DogScene"), { ssr: false });
 
@@ -39,12 +39,23 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-[2] text-center px-4 max-w-5xl mx-auto">
+        {/* Series label */}
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mt-8 text-xs sm:text-sm font-bold uppercase tracking-[0.3em]"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          {EVENT.series} &middot; {EVENT.edition}
+        </motion.p>
+
         {/* Date badge */}
         <motion.div
           initial={{ opacity: 0, rotate: -5 }}
           animate={{ opacity: 1, rotate: 2 }}
           transition={{ delay: 0.2 }}
-          className="inline-block mt-8 mb-8 px-5 py-2 text-xs sm:text-sm font-black uppercase tracking-wider"
+          className="inline-block mt-5 mb-8 px-5 py-2 text-xs sm:text-sm font-black uppercase tracking-wider"
           style={{
             background: "var(--bg-primary)",
             border: "2px solid var(--accent-primary)",
@@ -54,7 +65,7 @@ export default function Hero() {
             boxShadow: "3px 3px 0px var(--accent-primary)",
           }}
         >
-          June 13, 2026 &middot; Safari Beach, Ulcinj, Montenegro
+          {EVENT.dateLabel} &middot; Safari Beach, Ulcinj
         </motion.div>
 
         {/* Title */}
@@ -80,10 +91,10 @@ export default function Hero() {
           className="text-lg sm:text-xl md:text-2xl mb-10 max-w-2xl mx-auto"
           style={{ color: "var(--text-secondary)" }}
         >
-          A Techno &amp; House charity festival on the Adriatic coast.
+          A Halloween disco party on the Adriatic coast. Costumes, a raffle, and one big dancefloor.
           <br />
           <span style={{ color: "var(--accent-primary)", fontWeight: 700 }}>
-            Every beat saves a life.
+            Every euro for the dogs.
           </span>
         </motion.p>
 
@@ -104,11 +115,16 @@ export default function Hero() {
           transition={{ delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a href="/tickets" className="cta-sticker">
-            Get Tickets
+          <a href="#party" className="cta-sticker">
+            What&rsquo;s On
           </a>
-          <a href="/lineup" className="cta-sticker-outline">
-            View Lineup
+          <a
+            href={EVENT.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-sticker-outline"
+          >
+            Follow Us
           </a>
         </motion.div>
 

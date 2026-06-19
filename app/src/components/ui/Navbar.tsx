@@ -3,24 +3,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_LINKS, FESTIVAL } from '@/lib/content';
+import { NAV_LINKS, EVENT } from '@/lib/content';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   return (
     <>
@@ -42,7 +36,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <Image
               src="/images/dftd_logo.png"
-              alt={FESTIVAL.shortName}
+              alt={EVENT.shortName}
               width={120}
               height={80}
               className="transition-all duration-300"
@@ -50,44 +44,36 @@ export default function Navbar() {
               priority
             />
             <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ background: 'var(--accent-primary)', color: 'var(--bg-primary)' }}>
-              &apos;{String(FESTIVAL.year).slice(2)}
+              &apos;{String(EVENT.year).slice(2)}
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map((link) => {
-              const active = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="relative px-4 py-2 text-sm font-medium rounded-full transition-colors"
-                  style={{
-                    color: active ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                  }}
-                >
-                  {link.label}
-                  {active && (
-                    <motion.div
-                      layoutId="nav-active"
-                      className="absolute inset-0 rounded-full -z-10"
-                      style={{ background: 'var(--gradient-card)' }}
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              );
-            })}
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="relative px-4 py-2 text-sm font-medium rounded-full transition-colors hover:opacity-100"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* Ticket CTA */}
-          <Link
-            href="/tickets"
-            className="hidden md:inline-block cta-sticker !py-2 !px-4 !text-sm !rotate-0 hover:!-rotate-2"
-          >
-            Get Tickets
-          </Link>
+          {/* Follow CTA (desktop only — wrapper controls visibility so .cta-sticker's
+              own display rule doesn't override Tailwind's `hidden`) */}
+          <span className="hidden md:inline-block">
+            <a
+              href={EVENT.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-sticker !py-2 !px-4 !text-sm !rotate-0 hover:!-rotate-2"
+            >
+              Follow Us
+            </a>
+          </span>
 
           {/* Mobile Burger */}
           <button
@@ -131,16 +117,17 @@ export default function Navbar() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
               >
-                <Link
+                <a
                   href={link.href}
+                  onClick={() => setMobileOpen(false)}
                   className="block text-2xl font-bold py-3 border-b"
                   style={{
-                    color: pathname === link.href ? 'var(--accent-primary)' : 'var(--text-primary)',
+                    color: 'var(--text-primary)',
                     borderColor: 'var(--border-color)',
                   }}
                 >
                   {link.label}
-                </Link>
+                </a>
               </motion.div>
             ))}
             <motion.div
@@ -149,12 +136,14 @@ export default function Navbar() {
               transition={{ delay: 0.4 }}
               className="mt-auto"
             >
-              <Link
-                href="/tickets"
+              <a
+                href={EVENT.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="cta-sticker block text-center !text-lg"
               >
-                Get Tickets
-              </Link>
+                Follow Us
+              </a>
             </motion.div>
           </motion.div>
         )}

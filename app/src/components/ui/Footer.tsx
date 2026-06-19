@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { FESTIVAL, NAV_LINKS } from '@/lib/content';
+import { EVENT, NAV_LINKS } from '@/lib/content';
 
 export default function Footer() {
   return (
@@ -26,7 +25,7 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src="/images/dftd_logo.png"
-                alt={FESTIVAL.shortName}
+                alt={EVENT.shortName}
                 width={120}
                 height={80}
                 className="mb-3"
@@ -34,11 +33,11 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
-              {FESTIVAL.tagline}
+              {EVENT.tagline}
             </p>
             <div className="flex gap-3">
               <a
-                href={FESTIVAL.social.instagram}
+                href={EVENT.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110"
@@ -50,7 +49,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href={FESTIVAL.social.facebook}
+                href={EVENT.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110"
@@ -62,7 +61,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href={`mailto:${FESTIVAL.social.email}`}
+                href={`mailto:${EVENT.social.email}`}
                 className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110"
                 style={{ background: 'var(--gradient-card)', border: '1px solid var(--border-color)' }}
                 aria-label="Email"
@@ -82,13 +81,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {NAV_LINKS.map(link => (
                 <li key={link.href}>
-                  <Link
+                  <a
                     href={link.href}
                     className="text-sm transition-colors hover:underline"
                     style={{ color: 'var(--text-secondary)' }}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -100,43 +99,32 @@ export default function Footer() {
               Event Details
             </h4>
             <ul className="space-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-              <li>June 13, 2026</li>
-              <li>{FESTIVAL.times.doors} – {FESTIVAL.times.secondStageEnd}</li>
-              <li>{FESTIVAL.location.venue}</li>
-              <li>{FESTIVAL.location.area}, {FESTIVAL.location.city}</li>
-              <li>{FESTIVAL.location.country}</li>
+              <li>{EVENT.dateLabel}</li>
+              <li>{EVENT.type}</li>
+              <li>{EVENT.location.venue}</li>
+              <li>{EVENT.location.area}, {EVENT.location.city}</li>
+              <li>{EVENT.location.country}</li>
             </ul>
           </div>
 
-          {/* Partners */}
+          {/* The Cause */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--accent-primary)' }}>
-              Partners
+              The Cause
             </h4>
-            <ul className="space-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-              <li>
-                <a href={FESTIVAL.partners.danceForShelters.website} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  Dance For Shelters
-                </a>
-              </li>
-              <li>
-                <a href={FESTIVAL.cause.title} className="hover:underline">
-                  SOS Street Dog Project
-                </a>
-              </li>
-              <li>
-                <a href={FESTIVAL.partners.euProject.website} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  {FESTIVAL.partners.euProject.name}
-                </a>
-              </li>
-            </ul>
+            <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
+              100% of all raffle proceeds go to the {EVENT.cause.title}.
+            </p>
+            <a href="#cause" className="text-sm font-bold hover:underline" style={{ color: 'var(--accent-primary)' }}>
+              Learn more
+            </a>
           </div>
         </div>
 
         {/* Bottom */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid var(--border-color)' }}>
           <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-            &copy; {new Date().getFullYear()} {FESTIVAL.name}. All proceeds go to animal welfare.
+            &copy; {new Date().getFullYear()} {EVENT.name}. All proceeds go to animal welfare.
           </p>
           <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
             Made with love for the dogs of Montenegro

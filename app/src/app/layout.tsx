@@ -29,12 +29,12 @@ const headingFont = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: 'Dancing For The Dogs 2026 | Charity Music Festival | Ulcinj, Montenegro',
-  description: 'Dance for a cause at DFTD 2026 - a charity electronic music festival on Safari Beach, Ulcinj, Montenegro. June 13, 2026. All proceeds support stray dog rescue.',
-  keywords: ['festival', 'charity', 'electronic music', 'techno', 'Montenegro', 'Ulcinj', 'dogs', 'animal welfare'],
+  title: 'Dancing For The Dogs | Halloween Charity Disco Party | Ulcinj, Montenegro',
+  description: 'A Halloween charity disco party on Safari Beach, Ulcinj, Montenegro. Saturday, October 31, 2026. Costume contest, raffle, and 100% of proceeds for the SOS Street Dog Project.',
+  keywords: ['party', 'charity', 'Halloween', 'disco', 'Montenegro', 'Ulcinj', 'dogs', 'animal welfare', 'raffle'],
   openGraph: {
-    title: 'Dancing For The Dogs 2026',
-    description: 'Charity electronic music festival on the beach. Every beat saves a life.',
+    title: 'Dancing For The Dogs',
+    description: 'A Halloween charity disco party on the beach. Every euro for the dogs.',
     type: 'website',
     locale: 'en_US',
   },
