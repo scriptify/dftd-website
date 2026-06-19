@@ -37,6 +37,18 @@ export const EVENT = {
       desc: 'Grab a raffle ticket for the chance to win great prizes. 100% of the proceeds go to the dogs.',
     },
   ],
+  dj: {
+    name: 'DJ Mike',
+    photo: '/images/event/dj_mike.jpeg',
+    tagline: '47 — and still behind the decks 🔥',
+    quote: 'I don’t play what I like — I play what makes YOU lose it.',
+    bio: [
+      'From his first beat in a small-town disco to tonight: a self-made DJ, raised on turntables, vinyl, and a pure instinct for the crowd. No presets. No playlists. Just vibes.',
+      '50 people or 3,000, a wedding or a club — energy is everything, and reading the room is the whole game. When the first guest hits the dancefloor? Goosebumps. Every single time.',
+    ],
+    roots: ['90s Trance', 'House', 'Techno'],
+    loves: ['Club Classics', '80s / 90s / 2000s', 'Eurodance'],
+  },
   cause: {
     title: 'SOS Street Dog Project',
     short: '100% of all raffle proceeds go to the SOS Street Dog Project.',
@@ -61,6 +73,7 @@ export const EVENT = {
 // Single-page navigation — anchors to sections on the home page
 export const NAV_LINKS = [
   { href: '#party', label: 'The Party' },
+  { href: '#dj', label: 'The DJ' },
   { href: '#cause', label: 'The Cause' },
   { href: '#location', label: 'Location' },
   { href: '#follow', label: 'Follow' },

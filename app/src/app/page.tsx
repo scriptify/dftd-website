@@ -66,6 +66,109 @@ export default function Home() {
         </div>
       </section>
 
+      {/* The DJ */}
+      <section id="dj" className="py-24 px-4 scroll-mt-24 relative overflow-hidden" style={{ background: 'var(--gradient-hero)' }}>
+        <div className="max-w-7xl mx-auto">
+          <ScrollSection>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Photo */}
+              <div className="relative">
+                <div
+                  className="absolute -inset-4 rounded-3xl blur-3xl opacity-30"
+                  style={{ background: 'var(--gradient-accent)' }}
+                />
+                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl">
+                  <Image
+                    src={EVENT.dj.photo}
+                    alt={`${EVENT.dj.name} behind the decks`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: -6 }}
+                  viewport={{ once: true }}
+                  className="absolute -bottom-5 -right-3 sm:-right-5 px-5 py-2 text-sm font-black uppercase tracking-wider"
+                  style={{
+                    background: 'var(--accent-primary)',
+                    color: 'var(--bg-primary)',
+                    fontFamily: 'var(--font-display)',
+                    border: '3px solid var(--text-primary)',
+                    borderRadius: '4px',
+                    boxShadow: '4px 4px 0px var(--text-primary)',
+                  }}
+                >
+                  Just Vibes 🎧
+                </motion.div>
+              </div>
+
+              {/* Text */}
+              <div>
+                <h2 className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
+                  Meet the DJ
+                </h2>
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-black mb-3 leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                  <span className="gradient-text">DJ MIKE</span>
+                </h3>
+                <p className="text-lg font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+                  {EVENT.dj.tagline}
+                </p>
+
+                {EVENT.dj.bio.map((para, i) => (
+                  <p key={i} className="text-lg mb-4" style={{ color: 'var(--text-secondary)' }}>
+                    {para}
+                  </p>
+                ))}
+
+                <blockquote
+                  className="my-6 pl-5 text-xl sm:text-2xl font-black leading-snug"
+                  style={{ borderLeft: '4px solid var(--accent-primary)', fontFamily: 'var(--font-heading)' }}
+                >
+                  &ldquo;{EVENT.dj.quote}&rdquo;
+                </blockquote>
+
+                {/* Genre tags */}
+                <div className="space-y-3 mt-8">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider mr-1" style={{ color: 'var(--text-secondary)' }}>
+                      Roots
+                    </span>
+                    {EVENT.dj.roots.map((g) => (
+                      <span
+                        key={g}
+                        className="px-3 py-1 rounded-full text-xs font-bold"
+                        style={{ background: 'rgba(0, 188, 212, 0.15)', color: 'var(--accent-primary)' }}
+                      >
+                        {g}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider mr-1" style={{ color: 'var(--text-secondary)' }}>
+                      Loves
+                    </span>
+                    {EVENT.dj.loves.map((g) => (
+                      <span
+                        key={g}
+                        className="px-3 py-1 rounded-full text-xs font-bold"
+                        style={{ background: 'rgba(233, 30, 140, 0.15)', color: 'var(--accent-secondary)' }}
+                      >
+                        {g}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-sm pt-1" style={{ color: 'var(--text-secondary)' }}>
+                    &hellip; anything that destroys the dancefloor 🚀
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollSection>
+        </div>
+      </section>
+
       {/* The Cause */}
       <section id="cause" className="py-24 px-4 scroll-mt-24" style={{ background: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto">
