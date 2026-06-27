@@ -29,6 +29,7 @@ const headingFont = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.dancingforthedogs.me'),
   title: 'Dancing For The Dogs | Halloween Charity Disco Party | Ulcinj, Montenegro',
   description: 'A Halloween charity disco party on Safari Beach, Ulcinj, Montenegro. Saturday, October 31, 2026. Costume contest, raffle, and 100% of proceeds for the SOS Street Dog Project.',
   keywords: ['party', 'charity', 'Halloween', 'disco', 'Montenegro', 'Ulcinj', 'dogs', 'animal welfare', 'raffle'],
@@ -37,6 +38,8 @@ export const metadata: Metadata = {
     description: 'A Halloween charity disco party on the beach. Every euro for the dogs.',
     type: 'website',
     locale: 'en_US',
+    url: 'https://www.dancingforthedogs.me',
+    siteName: 'Dancing For The Dogs',
   },
 };
 
