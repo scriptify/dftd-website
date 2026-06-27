@@ -24,12 +24,12 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/">
               <Image
-                src="/images/dftd_logo.png"
+                src="/images/dftd_logo_halloween.png"
                 alt={EVENT.shortName}
-                width={120}
-                height={80}
+                width={690}
+                height={800}
                 className="mb-3"
-                style={{ height: '60px', width: 'auto' }}
+                style={{ height: '72px', width: 'auto' }}
               />
             </Link>
             <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>

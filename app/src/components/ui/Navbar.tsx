@@ -35,12 +35,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <Image
-              src="/images/dftd_logo.png"
+              src="/images/dftd_logo_halloween.png"
               alt={EVENT.shortName}
-              width={120}
-              height={80}
+              width={690}
+              height={800}
               className="transition-all duration-300"
-              style={{ height: scrolled ? '36px' : '48px', width: 'auto' }}
+              style={{ height: scrolled ? '40px' : '56px', width: 'auto' }}
               priority
             />
             <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ background: 'var(--accent-primary)', color: 'var(--bg-primary)' }}>
